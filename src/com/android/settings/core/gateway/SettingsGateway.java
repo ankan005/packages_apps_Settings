@@ -147,6 +147,7 @@ import com.msm.xtended.Xtensions;
 import com.xtended.settings.fragments.about.Update;
 import com.msm.xtended.fragments.OmniJawsSettings;
 import com.msm.xtended.fragments.PieSettings;
+import com.android.settings.livedisplay.LiveDisplaySettings;
 
 public class SettingsGateway {
 
@@ -281,7 +282,8 @@ public class SettingsGateway {
             SmartbarSettingsActivity.class.getName(),
             FlingSettingsActivity.class.getName(),
             PulseSettingsActivity.class.getName(),
-	    PieSettings.class.getName()
+	    PieSettings.class.getName(),
+            LiveDisplaySettings.class.getName(),
     };
 
     public static final String[] SETTINGS_FOR_RESTRICTED = {
