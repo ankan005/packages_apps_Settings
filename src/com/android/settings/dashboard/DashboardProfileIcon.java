@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.content.pm.UserInfo;
 
@@ -18,7 +18,7 @@ import com.android.settings.users.UserSettings;
 
 import com.android.internal.logging.nano.MetricsProto;
 
-public class DashboardProfileIcon extends LinearLayout implements OnClickListener {
+public class DashboardProfileIcon extends RelativeLayout implements OnClickListener {
 
     private View mUsers;
 
@@ -33,11 +33,13 @@ public class DashboardProfileIcon extends LinearLayout implements OnClickListene
 
     private void init(Context context) {
         View view = inflate(context, R.layout.item_dashboard_profile, this);
+        TextView name = view.findViewById(R.id.user_name);
         ImageView icon = view.findViewById(R.id.user_icon);
-        view.setClipToOutline(true);
-        icon.setClipToOutline(true);
         UserManager userManager = (UserManager) context.getSystemService(Context.USER_SERVICE);
         UserInfo info = com.android.settings.Utils.getExistingUser(userManager, android.os.Process.myUserHandle());
+        LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        setLayoutParams(lp);
+        name.setText(info.name);
         icon.setImageDrawable(Utils.getUserIcon(context, userManager, info));
         mUsers = findViewById(R.id.dashboard_profile_icon);
         mUsers.setOnClickListener(this);
